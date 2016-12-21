@@ -1,0 +1,80 @@
+<html>
+<head>
+    <style type="text/css">
+        .color-red { color:red; }
+        .color-blue { color:blue;}
+
+        .is-loading {background: red;}
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+<!--demo1-->
+        <h1>
+            <!--{{message.split('').reverse().join('')}}-->
+            {{reverseMessage}}
+        </h1>
+
+<!--demo2-->
+        <h2>All Tasks</h2>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+        <!--将数据判断写在v-if中-->
+        <!--v-if为真的时候才会绑定数据显示-->
+        <h2>Incomplete Tasks</h2>
+        <li v-for="task in tasks" v-if="!task.completed" v-text="task.description"></li>
+
+        <!--将数据判断写在computed内的方法中，这种方法更佳-->
+        <h2>Incomplete Tasks</h2>
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
+
+    </div>
+
+
+<script src="./Vue.js"></script>
+<script>
+
+    var app = new Vue({
+        el: '#root',
+        data: {
+            message: "Hello world",
+            tasks:[
+                {description: 'Go to the store', completed: true},
+                {description: 'make the dinner', completed: false},
+                {description: 'have a rest', completed: false},
+                {description: 'wash the clothes', completed: false},
+                {description: 'fuck the code', completed: true},
+            ]
+        },
+        computed:{
+//            demo1
+            reverseMessage(){
+                //基于缓存 效率更高 不会每次都进行计算
+                return this.message.split('').reverse().join('');
+            },
+
+//            demo2
+            incompleteTasks(){
+                return this.tasks.filter(task=> ! task.completed);
+
+//                等同于：
+//                return this.tasks.filter(function (task) {
+//                    return ! task.completed;
+//                })
+            }
+        },
+
+        methods: {
+
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
