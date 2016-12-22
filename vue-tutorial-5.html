@@ -1,0 +1,50 @@
+<!--components tutorial-->
+
+<html>
+<head>
+    <style type="text/css">
+        .color-red { color:red; }
+        .color-blue { color:blue;}
+
+    </style>
+</head>
+
+<body>
+
+    <div id="root">
+
+        <task>Go to 1</task>
+        <task>Go to 2</task>
+        <task>Go to 3</task>
+
+    </div>
+
+
+<script src="./Vue.js"></script>
+<script>
+
+    /**
+     * Created by Weiwu on 16/12/22.
+     */
+    Vue.component('task',{
+
+
+//        template: '<li>The stable string.</li>'
+        //change to <slot> , then the content inside of <slot> will be replace.
+        template: '<li><slot></slot></li>'
+
+    })
+
+
+    var app = new Vue({
+        el: '#root',
+        data: {
+        },
+        methods: {
+        }
+    })
+
+</script>
+
+</body>
+</html>
