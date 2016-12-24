@@ -1,0 +1,59 @@
+<!--components tutorial-->
+<html>
+<head>
+    <style type="text/css">
+        .color-red {
+            color: red;
+        }
+
+        .color-blue {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="root">
+
+    <task :name='name' :title='title' :city='city'></task>
+    <!--<task>Go to 2</task>-->
+    <!--<task>Go to 3</task>-->
+
+</div>
+
+
+<template id="task">
+    <!--最好要用div包裹，否则显示有误-->
+    <div>
+        <h1>My name is {{name}}</h1>
+        <h2> {{title}}</h2>
+        <h3>Now i am in {{city}}</h3>
+    </div>
+</template>
+
+
+<script src="vue.js"></script>
+<script>
+
+    Vue.component('task', {
+        template: '#task',
+        props: ['name', 'title', 'city']
+    })
+
+
+    var app = new Vue({
+        el: '#root',
+        data: {
+            name: 'Yellow5A5',
+            title: 'This is a sample for vue',
+            city: 'hangzhou'
+        },
+        methods: {}
+    })
+
+</script>
+
+</body>
+</html>

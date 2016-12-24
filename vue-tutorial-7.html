@@ -1,0 +1,66 @@
+<!--components within components tutorial-->
+<html>
+<head>
+    <style type="text/css">
+        .color-red {
+            color: red;
+        }
+
+        .color-blue {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="root">
+
+    <task-list></task-list>
+
+</div>
+
+
+<template id="task-list-tem">
+    <div>
+        <task v-for="task in tasks">{{task.task}}</task>
+    </div>
+</template>
+
+
+<script src="vue.js"></script>
+<script>
+
+    Vue.component('task-list', {
+        template: '#task-list-tem',
+        data(){
+            return {
+                tasks: [
+                    {task: 'First task.', complete: true},
+                    {task: 'Second task.', complete: false},
+                    {task: 'Third task.', complete: true},
+                    {task: 'Fourth task.', complete: false}
+                ]
+            }
+        }
+    })
+
+    Vue.component('task', {
+        template: '<li><slot></slot></li>'
+    });
+
+    var app = new Vue({
+        el: '#root',
+        data: {
+            name: 'Yellow5A5',
+            title: 'This is a sample for vue',
+            city: 'hangzhou'
+        },
+        methods: {}
+    })
+
+</script>
+
+</body>
+</html>
